@@ -1,0 +1,37 @@
+#Approach
+Initialize an integer variable i to 0. This variable will be used to track the start index of the prefix.
+Iterate over each character c in the input string word using a for loop. The loop variable j is used as the index.
+Inside the loop, check if the current character c is equal to the target character ch.
+If c is equal to ch, it means we have found the target character.
+Extract the prefix of the string word from index i to index j, inclusive, using the substring method. This prefix is stored in the variable word1.
+Extract the remaining suffix of the string word starting from index j+1 to the end of the string, using the substring method. This suffix is stored in the variable word2.
+Create a StringBuilder object str and initialize it with the reversed version of the prefix word1 using the reverse method of StringBuilder.
+Append the suffix word2 to the reversed prefix str using the append method of StringBuilder.
+Return the result as a string by converting the StringBuilder str to a string using the toString method.
+If the loop completes without finding the target character ch, it means the target character does not exist in the string. In this case, simply return the original input string word.
+
+#Complexity
+Time complexity:
+The time complexity of the provided code is
+𝑂(𝑛), where n is the length of the input string word
+Space complexity:
+The space complexity of the provided code is 𝑂(𝑛)
+
+#Code
+class Solution {
+    public String reversePrefix(String word, char ch) {
+        
+        int i=0;
+        for(int j=0;j<word.length();j++){
+            char c = word.charAt(j);
+            if(c == ch){
+                String word1 = word.substring(i,j+1);
+                String word2 = word.substring(j+1,word.length());
+                StringBuilder str = new StringBuilder(word1).reverse();
+                str.append(word2);
+                return str.toString();
+            }
+        }
+        return word;
+    }
+}
